@@ -5,12 +5,12 @@ namespace FPSSample {
 
     public class CamMoving : MonoBehaviour {
         #region Variables
-        //È¸Àü½ÃÅ³ Ä«¸Ş¶ó
+        //íšŒì „ì‹œí‚¬ ì¹´ë©”ë¼
         [SerializeField] Transform camTransform;
-        //È¸Àü °¨µµ¿Í È¸Àü°ª
-        [SerializeField] float sensitivity = 100f;
+        //íšŒì „ ê°ë„ì™€ íšŒì „ê°’
+        [SerializeField] float sensitivity = 200f;
         float rotateX = 0;
-        //¸¶¿ì½º ÀÔ·Â°ª
+        //ë§ˆìš°ìŠ¤ ì…ë ¥ê°’
         Vector2 mouseInput;
 
         
@@ -18,24 +18,21 @@ namespace FPSSample {
 
         #region Unity Event Methods
         void Update() {
-            //¸¶¿ì½º ÀÌµ¿ °¨Áö
-            float mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
-            float mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
-            mouseY = Mathf.Clamp(mouseY, -90f, 40f); //¸¶¿ì½º YÃà È¸Àü Á¦ÇÑ
-            //Ä«¸Ş¶ó È¸Àü
-            transform.Rotate(Vector3.left* mouseX);
-            transform.Rotate(Vector3.up* mouseY);
+            //í”Œë ˆì´ì–´ë¥¼ íšŒì „ ì‹œí‚¤ê¸°
+            transform.Rotate(Vector3.up * mouseInput.x * sensitivity * Time.deltaTime);
+            //ì¹´ë©”ë¼ë¥¼ íšŒì „ ì‹œí‚¤ê¸°
+            rotateX -= mouseInput.y * sensitivity * Time.deltaTime;
+                //ì¹´ë©”ë¼ íšŒì „ê°’ ì œí•œ
+            rotateX = Mathf.Clamp(rotateX, -90f, 40f);
+                //ì›í™œí•œ ì´ë™ì„ ìœ„í•´ ë¡œì»¬ ì¶•ìœ¼ë¡œ íšŒì „
+            camTransform.localRotation = Quaternion.Euler(rotateX, 0, 0);
         }
 
         #endregion
         #region Custom Methods
         public void OnMouseMove(InputAction.CallbackContext context) {
-            //¸¶¿ì½º ÀÌµ¿ °¨Áö
+            //ë§ˆìš°ìŠ¤ ì…ë ¥ê°’ì„ ë°›ì•„ì˜¤ê¸°
             mouseInput = context.ReadValue<Vector2>();
-            //È¸Àü°ª °è»ê
-            rotateX -= mouseInput.y * sensitivity * Time.deltaTime;
-            rotateX = Mathf.Clamp(rotateX, -90f, 40f); //È¸Àü°ª Á¦ÇÑ
-            camTransform.localRotation = Quaternion.Euler(rotateX, 0, 0);
         }
         #endregion
     }
