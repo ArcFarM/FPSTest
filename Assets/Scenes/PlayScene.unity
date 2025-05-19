@@ -6522,7 +6522,7 @@ MonoBehaviour:
   player: {fileID: 1696109346}
   sf: {fileID: 1090235446}
   text: {fileID: 1437713283}
-  delayTime: 3
+  delayTime: 2
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
