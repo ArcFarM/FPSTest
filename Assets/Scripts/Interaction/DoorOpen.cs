@@ -44,10 +44,8 @@ namespace FPSSample {
             crosshair.SetActive(false);
         }
         public void OnInteract(InputAction.CallbackContext context) {
-            //문 열라고 문구 나오게 하기
-            actionText.text = "문 열기";
             //TODO : 열린 문에 다시 상호작용하면 문닫기
-            if (context.started) {
+            if(context.started) {
                 if (distance <= threshold) {
                     //문 열기
                     doorAnimator.SetBool("IsOpen", true);
