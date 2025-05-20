@@ -15,6 +15,10 @@ namespace FPSSample {
 
         #region Unity Event Methods
         private void Start() {
+            //커서 고정
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+
             StartCoroutine(StartGame());
         }
         #endregion
