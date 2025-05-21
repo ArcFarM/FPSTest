@@ -6,9 +6,13 @@ namespace FPSSample {
     public class DoorOpen : InterAction {
         //문 열기 상호작용 대상에 부착
         #region Variables
+        AudioSource door_as;
         #endregion
 
         #region Unity Event Methods
+        private void Start() {
+            door_as = GetComponent<AudioSource>();
+        }
         #endregion
 
         #region Custom Methods
@@ -18,6 +22,7 @@ namespace FPSSample {
             //TODO : 열린 문에 다시 상호작용하면 문닫기
             animator.SetBool("IsOpen", true);
             GetComponent<BoxCollider>().enabled = false;
+            door_as.Play();
         }
         #endregion
     }
