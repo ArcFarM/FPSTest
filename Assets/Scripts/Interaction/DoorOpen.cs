@@ -12,34 +12,12 @@ namespace FPSSample {
         #endregion
 
         #region Custom Methods
-<<<<<<< Updated upstream
-        void ShowActionUI() {
-            actionUI.SetActive(true);
-            crosshair.SetActive(true);
-        }
-        void HideActionUI() {
-            actionUI.SetActive(false);
-            crosshair.SetActive(false);
-        }
-        public void OnInteract(InputAction.CallbackContext context) {
-            //문 열라고 문구 나오게 하기
-            actionText.text = "문 열기";
-            //TODO : 열린 문에 다시 상호작용하면 문닫기
-            if (context.started) {
-                if (distance <= threshold) {
-                    //문 열기
-                    doorAnimator.SetBool("IsOpen", true);
-                    GetComponent<BoxCollider>().enabled = false;
-                }
-            }
-=======
         public override void OnInteract() {
             //문 열라고 문구 나오게 하기
             actionText.text = "문 열기";
             //TODO : 열린 문에 다시 상호작용하면 문닫기
             animator.SetBool("IsOpen", true);
             GetComponent<BoxCollider>().enabled = false;
->>>>>>> Stashed changes
         }
         #endregion
     }
