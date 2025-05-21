@@ -7,9 +7,12 @@ namespace FPSSample {
         #region Variables
         AudioSource door_as;
         [SerializeField] BoxCollider door_trg;
-        [SerializeField] AudioClip enemy_sound;
         Animator door_anim;
         string anim_param = "isOpen";
+        //생성할 적
+        [SerializeField] AudioClip enemy_sound;
+        [SerializeField] EnemyController enemy;
+        
         #endregion
         #region Unity Event Methods
         private void Start() {
@@ -31,13 +34,20 @@ namespace FPSSample {
             door_as.Play();
             door_anim.SetBool(anim_param, true);
             yield return new WaitForSeconds(1f);
+            door_trg.enabled = false;
+            StartCoroutine(EnemyCreation(go));
+        }
+        IEnumerator EnemyCreation(GameObject go) {
             //적 등장 소리 재생
             door_as.clip = enemy_sound;
             door_as.Play();
+            //적 생성
+            enemy.gameObject.SetActive(true);
+            if(enemy != null) enemy.Set_State(State.Moving);
             yield return new WaitForSeconds(1f);
+            //플레이어 다시 활성화
             go.SetActive(true);
-            //TODO : 적 등장 구현, 다른 스크립트에서 처리
-            door_trg.enabled = false;
+
         }
         #endregion
     }
