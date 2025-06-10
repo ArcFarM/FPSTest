@@ -6,12 +6,11 @@ namespace FPSSample {
     public class DoorOpen : InterAction {
         //문 열기 상호작용 대상에 부착
         #region Variables
-        AudioSource door_as;
+        [SerializeField]AudioSource door_as;
         #endregion
 
         #region Unity Event Methods
         private void Start() {
-            door_as = GetComponent<AudioSource>();
         }
         #endregion
 
